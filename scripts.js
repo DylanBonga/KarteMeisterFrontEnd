@@ -1,22 +1,5 @@
 
-//function veranderTabel(){
-  // var xhr = new XMLHttpRequest();
-  // xhr.onreadystatechange = function(){
-  //   if(this.readyState>=3){
-  //     //alert("In xhr"+this.readyState+this.responseText);
-  //     var jojo = JSON.parse(this.responseText)
-  //     console.log(jojo)
-  //     document.getElementById("bijnaEinde").innerHTML = jojo.id;
-  //     document.getElementById("einde").innerHTML = jojo.kleur;
-  //   }
-  //
-  // }
-  // xhr.open("GET", "http://localhost:8082/hoi", true);
-  // xhr.send();
-//}
-
 function funXML(){
-  alert();
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if(this.readyState==4){
@@ -34,20 +17,36 @@ function funXML(){
 }
 
 //hoi
-function sendXML(){
-  var jojo = {};
-  jojo.eigenschap1 = 'fiets';
-  jojo.leeftijd = 18;
+function sendXML(api){
+  var rowObj = {};
+  rowObj.id = document.getElementById("idQ").value;
+  rowObj.eventName = document.getElementById("eventNaamQ").value;
+  rowObj.location = document.getElementById("locatieQ").value;
+  rowObj.dateAndTime = document.getElementById("datumQ_tijdQ").value;
+  rowObj.description = document.getElementById("BeschrijvingQ").value;
+
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 202) {
-      document.getElementById("demo").innerHTML = this.responseText;
+      document.getElementById("veranderen").innerHTML = "bobbedieboob";
     }
-  };
+  }
   xhttp.open("POST", "http://localhost:8082/"+api, true); //+api?
 	xhttp.setRequestHeader("Content-type", "application/json");
-	xhttp.send(jojo);
+  console.log(rowObj);
+	xhttp.send(rowObj);
 }
+
+
+// function makeRow(){
+//   var id = makeJSONstring("id",document.getElementById("idQ").value);
+//   var eventName = makeJSONstring("eventName",document.getElementById("naamQ").value);
+//   var location = makeJSONstring("location",document.getElementById("locatieQ").value);
+//   var dateAndTime = makeJSONstring("dateAndTime",document.getElementById("datumQ_tijdQ").value);
+//   var descr = makeJSONstring("description", document.getElementById("BeschrijvingQ").value);
+//   var newJSONrow = createJSON([id,eventName,location,dateAndTime,descr]);
+//   return newJSONrow;
+// }
 
 function addRow(row1){
   var row = document.createElement("TR");
@@ -79,16 +78,9 @@ function giveRow(){
   return row1;
 }
 
-function setId(){
-
-  return id;
-}
-
-
-
 function makeRow(){
   var id = makeJSONstring("id",document.getElementById("idQ").value);
-  var eventName = makeJSONstring("eventName",document.getElementById("naamQ").value);
+  var eventName = makeJSONstring("eventName",document.getElementById("eventNaamQ").value);
   var location = makeJSONstring("location",document.getElementById("locatieQ").value);
   var dateAndTime = makeJSONstring("dateAndTime",document.getElementById("datumQ_tijdQ").value);
   var descr = makeJSONstring("description", document.getElementById("BeschrijvingQ").value);
