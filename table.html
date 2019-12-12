@@ -4,29 +4,30 @@
 <script type="text/javascript" src="scripts.js"></script>
 </header>
 
-
 <body onload=funXML()>
 
-<input type=button value="ROW" onclick=addRow(giveRow())></input>
+<input type=button value="RETRIEVE" onclick=addRow(funXML())></input>
+<input type=button value="POST" onclick=sendXML("backEndIn")></input>
+
 <table id=table1 backgroundColor='black'>
   <tr>
-    <th width = 100 align = left id="veranderen">ID</th>
+    <th width = 50 align = left id="veranderen">ID</th>
     <th width = 100 align = left>Naam</th>
     <th width = 100 align = left>Locatie</th>
-    <th width = 100 align = left>Datum en tijd</th>
-    <th width = 100 align = left>Beschrijving</th>
+    <th width = 250 align = left>Datum en tijd</th>
+    <th width = 250 align = left>Beschrijving</th>
   </tr>
-  
+
 </table>
 
 <div id="addRow">
-  <input id=idQ type=text><br>
-  <input id=naamQ type=text><br>
-  <input id=locatieQ type=text><br>
-  <input id=datumQ_tijdQ type=text><br>
-  <input id=BeschrijvingQ type=text><br>
+  ID: <br><input id=idQ type=text><br>
+  NAAM: <br><input id=eventNaamQ type=text><br>
+  LOCATIE: <br><input id=locatieQ type=text><br>
+  DATUM EN TIJD: <br><input id=datumQ_tijdQ type=text><br>
+  BESCHRIJVING: <br><input id=BeschrijvingQ type=text><br>
 
-  <input id=submitButton type=Button value="POST" onclick=addRow(makeRow())><br>
+
 </div>
 </body>
 </html>
