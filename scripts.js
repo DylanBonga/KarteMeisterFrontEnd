@@ -33,7 +33,7 @@ function funXML(){
 
 }
 
-
+//hoi 
 function sendXML(){
   var jojo = {};
   jojo.eigenschap1 = 'fiets';
