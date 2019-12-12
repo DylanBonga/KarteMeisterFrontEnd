@@ -23,17 +23,17 @@ function funXML(){
       alert("In xhr "+this.readyState+this.responseText);
       var parseInput = JSON.parse(this.responseText);
       console.log(parseInput);
-      document.getElementById("veranderen").innerHTML = parseInput.kleur;
+      addRow(parseInput);
     }
   }
-  xhr.open("GET", "http://localhost:8082/hoi", true);
+  xhr.open("GET", "http://localhost:8084/attraction", true);
   xhr.send();
 
 
 
 }
 
-//hoi 
+//hoi
 function sendXML(){
   var jojo = {};
   jojo.eigenschap1 = 'fiets';
@@ -52,33 +52,30 @@ function sendXML(){
 function addRow(row1){
   var row = document.createElement("TR");
   var id = document.createElement("TD");
-  var name = document.createElement("TD");
+  var eventName = document.createElement("TD");
   var location = document.createElement("TD");
-  var date = document.createElement("TD");
-  var time = document.createElement("TD");
-  var descr = document.createElement("TD");
+  var dateAndTime = document.createElement("TD");
+  var description = document.createElement("TD");
 
-  var obj = JSON.parse(row1);
-  id.innerHTML = obj.id;
-  name.innerHTML = obj.naam;
-  location.innerHTML = obj.locatie;
-  date.innerHTML = obj.datum;
-  time.innerHTML = obj.tijd;
-  descr.innerHTML = obj.beschrijving;
+  //var obj = JSON.parse(row1);
+  id.innerHTML = row1.id;
+  eventName.innerHTML = row1.eventName;
+  location.innerHTML = row1.location;
+  dateAndTime.innerHTML = row1.dateAndTime;
+  description.innerHTML = row1.description;
 
   row.appendChild(id);
-  row.appendChild(name);
+  row.appendChild(eventName);
   row.appendChild(location);
-  row.appendChild(date);
-  row.appendChild(time);
-  row.appendChild(descr);
+  row.appendChild(dateAndTime);
+  row.appendChild(description);
 
   var tabel = document.getElementById("table1");
   tabel.appendChild(row);
 }
 
 function giveRow(){
-  var row1 = '{"id":"01", "naam":"ZZ Top", "locatie":"Ziggo Dome", "datum":"24 juni", "tijd":"13:00", "beschrijving":"Puik feestje, bijzijn is meemaken"}';
+  var row1 = '{"id":"01", "naam":"ZZ Top", "locatie":"Ziggo Dome", "datum en tijd":"13:00", "beschrijving":"Puik feestje, bijzijn is meemaken"}';
   return row1;
 }
 
@@ -91,12 +88,11 @@ function setId(){
 
 function makeRow(){
   var id = makeJSONstring("id",document.getElementById("idQ").value);
-  var name = makeJSONstring("naam",document.getElementById("naamQ").value);
-  var location = makeJSONstring("locatie",document.getElementById("locatieQ").value);
-  var date = makeJSONstring("datum",document.getElementById("datumQ").value);
-  var time = makeJSONstring("tijd",document.getElementById("tijdQ").value);
-  var descr = makeJSONstring("beschrijving", document.getElementById("BeschrijvingQ").value);
-  var newJSONrow = createJSON([id,name,location,date,time,descr]);
+  var eventName = makeJSONstring("eventName",document.getElementById("naamQ").value);
+  var location = makeJSONstring("location",document.getElementById("locatieQ").value);
+  var dateAndTime = makeJSONstring("dateAndTime",document.getElementById("datumQ_tijdQ").value);
+  var descr = makeJSONstring("description", document.getElementById("BeschrijvingQ").value);
+  var newJSONrow = createJSON([id,eventName,location,dateAndTime,descr]);
   return newJSONrow;
 }
 
