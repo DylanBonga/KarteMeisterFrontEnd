@@ -1,0 +1,41 @@
+<html>
+
+<head>
+<script type="text/javascript" src="scripts.js"></script>
+</header>
+
+
+<body onload=funXML()>
+<input type=button value="KLIK" onclick=laadTabel()></input>
+<input type=button value="ROW" onclick=addRow(giveRow())></input>
+<table id=table1 backgroundColor='black'>
+  <tr>
+    <th width = 100 align = left>ID</th>
+    <th width = 100 align = left>Naam</th>
+    <th width = 100 align = left>Locatie</th>
+    <th width = 100 align = left>Datum</th>
+    <th width = 100 align = left>Tijd</th>
+    <th width = 100 align = left>Beschrijving</th>
+  </tr>
+  <tr id="row1">
+    <td id="cell1">hoi</td>
+    <td id="cell2">hoihoi</td>
+    <td>Utrecht</td>
+    <td>11/12/2019</td>
+    <td>15:26</td>
+    <td>Leuk feessie</td>
+  </tr>
+</table>
+
+<div id="addRow">
+  <input id=idQ type=text><br>
+  <input id=naamQ type=text><br>
+  <input id=locatieQ type=text><br>
+  <input id=datumQ type=text><br>
+  <input id=tijdQ type=text><br>
+  <input id=BeschrijvingQ type=text><br>
+
+  <input id=submitButton type=Button value="POST" onclick=addRow(makeRow())><br>
+</div>
+</body>
+</html>
