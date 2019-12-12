@@ -1,10 +1,5 @@
 
-function veranderTabel(){
-
-  var eerste = document.getElementById("cell1");
-  eerste.innerHTML = "boioioioi";
-
-
+//function veranderTabel(){
   // var xhr = new XMLHttpRequest();
   // xhr.onreadystatechange = function(){
   //   if(this.readyState>=3){
@@ -18,23 +13,31 @@ function veranderTabel(){
   // }
   // xhr.open("GET", "http://localhost:8082/hoi", true);
   // xhr.send();
-}
+//}
 
 function funXML(){
+  alert();
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if(this.readyState==4){
       alert("In xhr "+this.readyState+this.responseText);
       var parseInput = JSON.parse(this.responseText);
       console.log(parseInput);
+      document.getElementById("veranderen").innerHTML = parseInput.kleur;
     }
-    xhr.open("GET", "http://localhost:8082/hoi", true);
-    xhr.send();
   }
+  xhr.open("GET", "http://localhost:8082/hoi", true);
+  xhr.send();
+
+
+
 }
 
 
 function sendXML(){
+  var jojo = {};
+  jojo.eigenschap1 = 'fiets';
+  jojo.leeftijd = 18;
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 202) {
@@ -42,8 +45,8 @@ function sendXML(){
     }
   };
   xhttp.open("POST", "http://localhost:8082/"+api, true); //+api?
-	//xhttp.setRequestHeader("Content-type", "application/json");
-	xhttp.send(data);
+	xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send(jojo);
 }
 
 function addRow(row1){
