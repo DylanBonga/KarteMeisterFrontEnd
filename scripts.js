@@ -1,5 +1,5 @@
 
-function funXML(){
+function funXML(eventName){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if(this.readyState==4){
@@ -9,7 +9,7 @@ function funXML(){
       addRow(parseInput);
     }
   }
-  xhr.open("GET", "http://localhost:8084/attraction", true);
+  xhr.open("GET", "http://localhost:8084/attraction/"+eventName+"/", true);
   xhr.send();
 }
 
@@ -17,10 +17,10 @@ function funXML(){
 function sendXML(api){
   var rowObj = {};
   rowObj.id = document.getElementById("idQ").value;
-  rowObj.eventName = document.getElementById("eventNaamQ").value;
   rowObj.location = document.getElementById("locatieQ").value;
   rowObj.dateAndTime = document.getElementById("datumQ_tijdQ").value;
   rowObj.description = document.getElementById("BeschrijvingQ").value;
+  rowObj.eventName = document.getElementById("eventNaamQ").value;
   if(nullCheckRow(rowObj)) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -28,10 +28,11 @@ function sendXML(api){
         document.getElementById("veranderen").innerHTML = "bobbedieboob";
       }
     }
-    xhttp.open("POST", "http://localhost:8082/"+api, true); //+api?
+    xhttp.open("POST", "http://localhost:8084/attraction"); //+api?
   	xhttp.setRequestHeader("Content-type", "application/json");
     console.log(rowObj);
-  	xhttp.send(rowObj);
+
+  	xhttp.send(JSON.stringify(rowObj));
   }
 }
 
@@ -75,6 +76,25 @@ function addRow(row1){
   var tabel = document.getElementById("table1");
   tabel.appendChild(row);
 }
+
+function addBRow(row1){
+  var row = document.createElement("DIV");
+
+  var id = document.createElement("TD");
+  var eventName = document.createElement("TD");
+  var location = document.createElement("TD");
+  var dateAndTime = document.createElement("TD");
+  var description = document.createElement("TD");
+
+
+  var tabel = document.getElementById("table2");
+  tabel.appendChild(row);
+}
+
+
+
+
+
 
 function giveRow(){
   var row1 = '{"id":"01", "naam":"ZZ Top", "locatie":"Ziggo Dome", "datum en tijd":"13:00", "beschrijving":"Puik feestje, bijzijn is meemaken"}';
