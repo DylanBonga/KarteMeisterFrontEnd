@@ -9,9 +9,12 @@
 </header>
 
 <body onload=funXML()>
+  <div class="jumbotron text-center">
+    <h1>KarteMeister</h1>
+  </div>
 
-<input type=button value="RETRIEVE" onclick=addRow(funXML())></input>
-<input type=button value="POST" onclick=sendXML("backEndIn")></input>
+  <input type=button class="btn btn-primary" value="RETRIEVE" onclick=addRow(funXML())></input>
+
 
 <table id=table1 backgroundColor='black'>
   <tr>
@@ -24,12 +27,7 @@
 
 </table>
 
-<div id="addRow">
-  ID: <br><input id=idQ type=text><br>
-  NAAM: <br><input id=eventNaamQ type=text><br>
-  LOCATIE: <br><input id=locatieQ type=text><br>
-  DATUM EN TIJD: <br><input id=datumQ_tijdQ type=text><br>
-  BESCHRIJVING: <br><input id=BeschrijvingQ type=text><br>
+
 
 
 </div>

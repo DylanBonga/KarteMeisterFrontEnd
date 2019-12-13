@@ -3,7 +3,7 @@ function funXML(){
   var xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function(){
     if(this.readyState==4){
-      alert("In xhr "+this.readyState+this.responseText);
+      console.log("XMLHttpRequest started..");
       var parseInput = JSON.parse(this.responseText);
       console.log(parseInput);
       addRow(parseInput);
@@ -11,9 +11,6 @@ function funXML(){
   }
   xhr.open("GET", "http://localhost:8084/attraction", true);
   xhr.send();
-
-
-
 }
 
 //hoi
@@ -24,19 +21,25 @@ function sendXML(api){
   rowObj.location = document.getElementById("locatieQ").value;
   rowObj.dateAndTime = document.getElementById("datumQ_tijdQ").value;
   rowObj.description = document.getElementById("BeschrijvingQ").value;
-
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 202) {
-      document.getElementById("veranderen").innerHTML = "bobbedieboob";
+  if(nullCheckRow(rowObj)) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 202) {
+        document.getElementById("veranderen").innerHTML = "bobbedieboob";
+      }
     }
+    xhttp.open("POST", "http://localhost:8082/"+api, true); //+api?
+  	xhttp.setRequestHeader("Content-type", "application/json");
+    console.log(rowObj);
+  	xhttp.send(rowObj);
   }
-  xhttp.open("POST", "http://localhost:8082/"+api, true); //+api?
-	xhttp.setRequestHeader("Content-type", "application/json");
-  console.log(rowObj);
-	xhttp.send(rowObj);
 }
 
+function nullCheckRow(obj){
+  if(Boolean(obj.id) && Boolean(obj.eventName) && Boolean(obj.location) && Boolean(obj.dateAndTime) && Boolean(obj.description) ){
+    return true;
+  }
+}
 
 // function makeRow(){
 //   var id = makeJSONstring("id",document.getElementById("idQ").value);
