@@ -12,22 +12,41 @@
   <div class="jumbotron text-center">
     <h1>KarteMeister</h1>
   </div>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
 
-  <div>
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="KarteMeisterStart.html">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="tableOrganisator.html">ORGANISATOR</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="inlogPage.html">GEBRUIKER</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">HELP</a>
+    </li>
+  </ul>
 
-<input type=button class="btn btn-primary" value="RETRIEVE" onclick=addRow(funXML("bob"))></input>
-<input type=button class="btn btn-success" value="POST" onclick=sendXML("attraction")></input>
+  </nav>
+  <!-- <div>
 
-<table id=table1 backgroundColor='black'>
+    <a href="KarteMeisterStart.html" target="_self"><input type=button class="btn btn-info" value="HOME"></input></a>-->
+    <input type=button class="btn btn-primary" value="RETRIEVE" onclick=funXML()></input>
+    <input type=button class="btn btn-success" value="POST" onclick=sendXML("attraction")></input>
+
+  <div id="table1"></div>
+<!-- <table id=table1 backgroundColor='black'>
   <tr>
     <th width = 50 align = left id="veranderen">ID</th>
     <th width = 100 align = left>Naam</th>
     <th width = 100 align = left>Locatie</th>
     <th width = 250 align = left>Datum en tijd</th>
     <th width = 250 align = left>Beschrijving</th>
-  </tr>
+  </tr> -->
 
-</table>
 
 <div id="addRow">
   ID: <br><input id=idQ type=text><br>

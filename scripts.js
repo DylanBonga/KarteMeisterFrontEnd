@@ -1,16 +1,26 @@
 
-function funXML(eventName){
-  var xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function(){
-    if(this.readyState==4){
-      console.log("XMLHttpRequest started..");
-      var parseInput = JSON.parse(this.responseText);
-      console.log(parseInput);
-      addRow(parseInput);
-    }
+eventArray = [];
+
+function funXML(){
+  console.log(eventArray);
+  if(document.getElementById("table1").hasChildNodes()){
+    removeTable();
   }
-  xhr.open("GET", "http://localhost:8084/attraction/"+eventName+"/", true);
-  xhr.send();
+  makeTable();
+
+  for(index in eventArray){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+      if(this.readyState==4){
+        console.log("XMLHttpRequest started..");
+        var parseInput = JSON.parse(this.responseText);
+
+        addRow(parseInput);
+      }
+    }
+    xhr.open("GET", "http://localhost:8084/attraction/"+eventArray[index]+"/", true);
+    xhr.send();
+  }
 }
 
 //hoi
@@ -21,16 +31,17 @@ function sendXML(api){
   rowObj.dateAndTime = document.getElementById("datumQ_tijdQ").value;
   rowObj.description = document.getElementById("BeschrijvingQ").value;
   rowObj.eventName = document.getElementById("eventNaamQ").value;
+  eventArray.push(document.getElementById("eventNaamQ").value)
   if(nullCheckRow(rowObj)) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 202) {
-        document.getElementById("veranderen").innerHTML = "bobbedieboob";
+        console.log("XMLHttpRequest started..");
       }
     }
-    xhttp.open("POST", "http://localhost:8084/attraction"); //+api?
+    xhttp.open("POST", "http://localhost:8084/"+api); //+api?
   	xhttp.setRequestHeader("Content-type", "application/json");
-    console.log(rowObj);
+    console.log(JSON.stringify(rowObj));
 
   	xhttp.send(JSON.stringify(rowObj));
   }
@@ -42,6 +53,7 @@ function nullCheckRow(obj){
   }
 }
 
+
 // function makeRow(){
 //   var id = makeJSONstring("id",document.getElementById("idQ").value);
 //   var eventName = makeJSONstring("eventName",document.getElementById("naamQ").value);
@@ -51,6 +63,42 @@ function nullCheckRow(obj){
 //   var newJSONrow = createJSON([id,eventName,location,dateAndTime,descr]);
 //   return newJSONrow;
 // }
+function removeTable(){
+  var tab = document.getElementById("table2");
+  tab.remove();
+}
+
+function makeTable(){
+  var divje = document.getElementById("table1");
+
+  var tab = document.createElement("TABLE")
+  var row = document.createElement("TR");
+  var id = document.createElement("TH");
+  var eventName = document.createElement("TH");
+  var location = document.createElement("TH");
+  var dateAndTime = document.createElement("TH");
+  var description = document.createElement("TH");
+
+  id.innerHTML = "ID";
+  eventName.innerHTML = "NAAM";
+  location.innerHTML = "LOCATIE";
+  dateAndTime.innerHTML = "DATUM EN TIJD";
+  description.innerHTML = "BESCHRIJVING";
+
+  row.appendChild(id);
+  row.appendChild(eventName);
+  row.appendChild(location);
+  row.appendChild(dateAndTime);
+  row.appendChild(description);
+  tab.appendChild(row);
+
+  tab.setAttribute("id", "table2")
+  divje.appendChild(tab);
+
+  //return(tab);
+}
+
+
 
 function addRow(row1){
   var row = document.createElement("TR");
@@ -73,8 +121,8 @@ function addRow(row1){
   row.appendChild(dateAndTime);
   row.appendChild(description);
 
-  var tabel = document.getElementById("table1");
-  tabel.appendChild(row);
+  table = document.getElementById("table2");
+  table.appendChild(row);
 }
 
 function addBRow(row1){
@@ -90,10 +138,6 @@ function addBRow(row1){
   var tabel = document.getElementById("table2");
   tabel.appendChild(row);
 }
-
-
-
-
 
 
 function giveRow(){
