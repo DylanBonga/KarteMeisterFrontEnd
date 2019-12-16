@@ -6,7 +6,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="scripts.js"></script>
-</header>
+  <script type="text/javascript" src="login.js"></script>
+</head>
 
 <body>
   <div class="jumbotron text-center">
@@ -33,11 +34,10 @@
 
   </nav>
 
-  <a href="tableOrganisator.html" target="_self"><input type=button class="btn btn-info" value="ORGANISATOR"></input></a>
-
-  <!-- <a href="tableBezoeker.html" target="_self"><input type=button class="btn btn-info" value="BEZOEKER"></input></a> -->
-  <a href="inlogPage.html" target="_self"><input type=button class="btn btn-info" value="BEZOEKER"></input></a>
-
+  <!-- <a href="KarteMeisterStart.html" target="_self"><input type=button class="btn btn-info" value="HOME"></input></a> -->
+  USERNAME <input type="text" id="username"></input>
+  PASSWORD <input type="password" id="password"></input>
+  <a href="tableBezoeker.html" target="_self"><input type=button class="btn btn-info" value="LOGIN" onclick=getLogin()></input></a>
 
 </body>
 </html>

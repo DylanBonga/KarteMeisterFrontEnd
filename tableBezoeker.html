@@ -13,7 +13,35 @@
     <h1>KarteMeister</h1>
   </div>
 
-  <input type=button class="btn btn-primary" value="RETRIEVE" onclick=addRow(funXML())></input>
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center">
+
+  <!-- Links -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="KarteMeisterStart.html">HOME</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="tableOrganisator.html">ORGANISATOR</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="inlogPage.html">GEBRUIKER</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">HELP</a>
+    </li>
+  </ul>
+
+  </nav>
+
+  <!--<a href="KarteMeisterStart.html" target="_self"><input type=button class="btn btn-info" value="HOME"></input></a> -->
+  <input type=button class="btn btn-primary" value="RETRIEVE" onclick=funXML()></input> 
+
+
+
+  <a href="bezoekerPagina.html" target="_self"><input type=button class="btn btn-danger" value="GEBRUIKER"></input></a>
+
+  <div id="table1"></div>
+
 
 <!-- <div class="container-fluid" id=table2>
   <div class="row">
@@ -27,7 +55,7 @@
 
 
 
-<table id=table1 backgroundColor='black'>
+<!-- <table id=table1 backgroundColor='black'>
   <tr>
     <th width = 50 align = left id="veranderen">ID</th>
     <th width = 100 align = left>Naam</th>
@@ -35,7 +63,7 @@
     <th width = 250 align = left>Datum en tijd</th>
     <th width = 250 align = left>Beschrijving</th>
   </tr>
-</table>
+</table> -->
 
 
 
